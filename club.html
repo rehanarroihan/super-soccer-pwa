@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Super Soccer | Sport news, schedule, and highlight</title>
+		<meta name="description" content="Super Soccer"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="theme-color" content="#283593"/>
+
+		<link rel="icon" href="/assets/img/ico.png">
+		<link rel="manifest" href="/manifest.json">
+		<link rel="stylesheet" href="/assets/css/materialize.min.css">
+		<link rel="stylesheet" href="/assets/css/fa.css">
+		<link rel="stylesheet" href="/assets/css/style.css">
+
+		<script defer src="/assets/js/fa.js"></script>
+	</head>
+	<body>
+		<!-- Navigasi -->
+		<nav class="indigo darken-2" role="navigation">
+			<div class="nav-wrapper container">
+			<a href="/" class="brand-logo" id="logo-container"><i class="fa fa-futbol"></i>&emsp;Super Soccer</a>
+			<a href="/#club" class="sidenav-trigger"><i class="fa fa-arrow-left"></i></a>
+			</div>
+		</nav>
+		<!-- Akhir Navigasi -->
+        <div class="container margin-top-28" id="body-content"></div>
+        <h4 class="container margin-top-28">Player List</h4>
+        <div class="container margin-top-28" id="player-list"></div>
+
+		<script type="text/javascript" src="https://unpkg.com/snarkdown@1.0.2/dist/snarkdown.umd.js"></script>
+		<script src="/assets/js/materialize.min.js"></script>
+		<script src="/assets/js/api.js"></script>
+
+		<script>
+			// REGISTER SERVICE WORKER
+			if ("serviceWorker" in navigator) {
+			  window.addEventListener("load", function() {
+					navigator.serviceWorker.register("/sw.js");
+			  });
+			} else {
+			  console.log("ServiceWorker belum didukung browser ini.");
+			}
+
+			// REQUEST API UNTUK PERTAMA KALI
+			document.addEventListener("DOMContentLoaded", function() {
+				getClubById();
+			});
+		  </script>
+	</body>
+</html>

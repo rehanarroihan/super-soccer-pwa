@@ -1,0 +1,48 @@
+@font-face {
+    font-family: GoogleSans;
+    src: url('../webfonts/gs.ttf');
+}
+
+* {
+    font-family: GoogleSans;
+}
+
+.brand-logo {
+    font-weight: 600;
+}
+
+.user-view {
+    min-height: 168px;
+}
+
+.user-view .background img {
+    height: 190px;
+}
+
+.margin-top-28 {
+    margin-top: 28px;
+}
+
+.card.horizontal .card-image {
+    max-width: 101%;
+}
+
+@media only screen and (min-width: 300px) {
+
+}
+
+@media only screen and (min-width: 480px) {
+
+
+}
+
+@media only screen and (min-width: 768px) {
+
+
+}
+
+@media only screen and (min-width: 994px) {
+    .user-view {
+        display: none;
+    }
+}    
