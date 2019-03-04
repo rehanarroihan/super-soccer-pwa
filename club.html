@@ -23,13 +23,16 @@
 			<a href="/#club" class="sidenav-trigger"><i class="fa fa-arrow-left"></i></a>
 			</div>
 		</nav>
-		<!-- Akhir Navigasi -->
+        <!-- Akhir Navigasi -->
+
         <div class="container margin-top-28" id="body-content"></div>
         <h4 class="container margin-top-28">Player List</h4>
         <div class="container margin-top-28" id="player-list"></div>
 
 		<script type="text/javascript" src="https://unpkg.com/snarkdown@1.0.2/dist/snarkdown.umd.js"></script>
-		<script src="/assets/js/materialize.min.js"></script>
+        <script src="/assets/js/materialize.min.js"></script>
+        <script src="/assets/js/idb.js"></script>
+        <script src="/assets/js/db.js"></script>
 		<script src="/assets/js/api.js"></script>
 
 		<script>
@@ -42,10 +45,12 @@
 			  console.log("ServiceWorker belum didukung browser ini.");
 			}
 
-			// REQUEST API UNTUK PERTAMA KALI
-			document.addEventListener("DOMContentLoaded", function() {
-				getClubById();
-			});
+			var clubDetail = getClubById();
+            function saveToFav(){
+                clubDetail.then(function(club) {
+                    setFavorite(club);
+                });
+            }
 		  </script>
 	</body>
 </html>

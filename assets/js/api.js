@@ -88,7 +88,7 @@ function getClubs() {
                                         <p>${team.venue}</p>
                                     </div>
                                     <div class="card-action">
-                                        <a href=""><i class="fa fa-star"></i> Add to Favorite</a>
+                                        <a href="./club.html?id=${team.id}"><i class="fa fa-info-circle"></i> Club Detail</a>
                                     </div>
                                 </div>
                             </div>
@@ -125,7 +125,7 @@ function getClubs() {
                                 <p>${team.venue}</p>
                             </div>
                             <div class="card-action">
-                                <a href=""><i class="fa fa-star"></i> Add to Favorite</a>
+                                <a href="./club.html?id=${team.id}"><i class="fa fa-info-circle"></i> Club Detail</a>
                             </div>
                         </div>
                     </div>
@@ -137,6 +137,7 @@ function getClubs() {
 }
 
 function getClubById() {
+    return new Promise(function(resolve, reject) {
     // Ambil nilai query parameter (?id=)
     var urlParams = new URLSearchParams(window.location.search);
     var idParam = urlParams.get("id");
@@ -160,7 +161,7 @@ function getClubById() {
                             <p>${data.venue}</p>
                         </div>
                         <div class="card-action">
-                            <a href=""><i class="fa fa-star"></i> Add to Favorite</a>
+                            <a href="javascript:void(0)" onclick="saveToFav()"><i class="fa fa-star"></i> Add to Favorite</a>
                         </div>
                     </div>
                 </div>
@@ -178,6 +179,7 @@ function getClubById() {
             });
             document.getElementById("body-content").innerHTML = clubDetailHTML;
             document.getElementById("player-list").innerHTML = playerList;
+            resolve(data);
           });
         }
       });
@@ -206,7 +208,7 @@ function getClubById() {
                             <p>${data.venue}</p>
                         </div>
                         <div class="card-action">
-                            <a href=""><i class="fa fa-star"></i> Add to Favorite</a>
+                            <a onclick="saveToFav()" href="javascript:void(0)"><i class="fa fa-star"></i> Add to Favorite</a>
                         </div>
                     </div>
                 </div>
@@ -224,5 +226,7 @@ function getClubById() {
             });
             document.getElementById("body-content").innerHTML = clubDetailHTML;
             document.getElementById("player-list").innerHTML = playerList;
+            resolve(data);  
+        });
     });
 }
