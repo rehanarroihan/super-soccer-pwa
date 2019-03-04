@@ -230,3 +230,35 @@ function getClubById() {
         });
     });
 }
+
+function getFavoriteClub() {
+    console.log("IM CALLED");
+    getAll().then(function(favClubs) {
+        var favList = "";
+        document.getElementById("favClubTitle").innerHTML = `Favorite Club <span class="new badge" data-badge-caption="Club(s)">${favClubs.length}</span>`;
+
+        favClubs.forEach(function(favClub) {
+            var crestUrl = favClub.crestUrl.replace(/^http:\/\//i, 'https://');
+            favList += `
+                <div class="card horizontal">
+                    <a href="./club.html?id=${favClub.id}">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img style="width: 170px;height: 224px;object-fit:contain;" alt="${favClub.name} Logo" src="${crestUrl}">
+                        </div>
+                    </a>
+                    <div class="card-stacked">
+                        <div class="card-content">
+                            <h5>${favClub.name}</h5>
+                            <h6>${favClub.founded}</h6>
+                            <p>${favClub.venue}</p>
+                        </div>
+                        <div class="card-action">
+                            <a onclick="removeFromFav()" href="javascript:void(0)"><i class="fa fa-star-half-alt"></i> Remove From Favorite</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        document.getElementById("favo").innerHTML = favList;
+    });
+  }

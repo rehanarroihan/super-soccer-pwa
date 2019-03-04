@@ -43,12 +43,16 @@ document.addEventListener("DOMContentLoaded", function() {
         if (this.readyState == 4) {
             var content = document.querySelector("#body-content");
             if (this.status == 200) {
+              console.log(page);
                 content.innerHTML = xhttp.responseText;
                 if(page == "standings") {
                   getStandings();
                 }
                 if(page == "club") {
                   getClubs();
+                }
+                if(page == "favorite") {
+                  getFavoriteClub();
                 }
             } else if (this.status == 404) {
                 content.innerHTML = "<p>Halaman tidak ditemukan.</p>";
