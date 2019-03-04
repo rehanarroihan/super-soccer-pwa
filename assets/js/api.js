@@ -27,7 +27,7 @@ function getStandings() {
                 standingList += `
                     <tr>
                         <td>${standing.position}</td>
-                        <td>${standing.team.name}</td>
+                        <td><a href="./club.html?id=${standing.team.id}">${standing.team.name}</a></td>
                         <td>${standing.points}</td>
                     </tr>
                 `;
@@ -70,7 +70,6 @@ function getClubs() {
         caches.match(base_url + "v2/competitions/2014/teams").then(function(response) {
             if (response) {
                 response.json().then(function(data) {
-                    console.log('Clubs cache found');
                     var clubList = "";
                     data.teams.forEach(function(team) {
                         var crestUrl = team.crestUrl.replace(/^http:\/\//i, 'https://');
@@ -160,8 +159,8 @@ function getClubById() {
                             <h6>${data.founded}</h6>
                             <p>${data.venue}</p>
                         </div>
-                        <div class="card-action">
-                            <a href="javascript:void(0)" onclick="saveToFav()"><i class="fa fa-star"></i> Add to Favorite</a>
+                        <div class="card-action" id="action-here">
+                            ${setOrRemoveFav(data.id)}
                         </div>
                     </div>
                 </div>
@@ -207,8 +206,8 @@ function getClubById() {
                             <h6>${data.founded}</h6>
                             <p>${data.venue}</p>
                         </div>
-                        <div class="card-action">
-                            <a onclick="saveToFav()" href="javascript:void(0)"><i class="fa fa-star"></i> Add to Favorite</a>
+                        <div class="card-action" id="action-here">
+                            ${setOrRemoveFav(data.id)}
                         </div>
                     </div>
                 </div>
@@ -231,8 +230,20 @@ function getClubById() {
     });
 }
 
+function setOrRemoveFav(club_id) {
+    getFavById(club_id).then(function(res) {
+        console.log(res);
+        var action = "";
+        if(res == undefined) {
+            action = '<a onclick="saveToFav()" href="javascript:void(0)"><i class="fa fa-star"></i> Add to Favorite</a>';
+        } else {
+            action = '<a onclick="removeFav()" href="javascript:void(0)"><i class="fa fa-star-half-alt"></i> Remove From Favorite</a>';
+        }
+        document.getElementById("action-here").innerHTML = action;
+    });
+}
+
 function getFavoriteClub() {
-    console.log("IM CALLED");
     getAll().then(function(favClubs) {
         var favList = "";
         document.getElementById("favClubTitle").innerHTML = `Favorite Club <span class="new badge" data-badge-caption="Club(s)">${favClubs.length}</span>`;
@@ -253,7 +264,7 @@ function getFavoriteClub() {
                             <p>${favClub.venue}</p>
                         </div>
                         <div class="card-action">
-                            <a onclick="removeFromFav()" href="javascript:void(0)"><i class="fa fa-star-half-alt"></i> Remove From Favorite</a>
+                            <a href="./club.html?id=${favClub.id}"><i class="fa fa-info-circle"></i> Club Detail</a>
                         </div>
                     </div>
                 </div>

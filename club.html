@@ -51,6 +51,11 @@
                     setFavorite(club);
                 });
             }
+            function removeFav() {
+                clubDetail.then(function(club) {
+                    removeFavorite(club.id);
+                });
+            }
 		  </script>
 	</body>
 </html>

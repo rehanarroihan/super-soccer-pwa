@@ -43,7 +43,6 @@ document.addEventListener("DOMContentLoaded", function() {
         if (this.readyState == 4) {
             var content = document.querySelector("#body-content");
             if (this.status == 200) {
-              console.log(page);
                 content.innerHTML = xhttp.responseText;
                 if(page == "standings") {
                   getStandings();
