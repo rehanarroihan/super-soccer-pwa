@@ -1,5 +1,6 @@
 {
   "name": "Super Soccer",
+  "gcm_sender_id": "202060925952",
   "short_name": "Super Soccer",
   "theme_color": "#283593",
   "background_color": "#536dfe",

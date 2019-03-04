@@ -1,0 +1,25 @@
+var webPush = require('web-push');
+
+const ENDPOINT = "https://android.googleapis.com/gcm/send/fKHjEHZTGT0:APA91bFuFAJmGUZFSlSzO1o7bVPTkMitFVUO855_i4rcLurvWulaQifwEu8AJwlPLWk7HvwIhqJYXiK7VWJYXTmXETyW20BgHDHmHjmJR4i03l_HcunZcPc_rXbZC1iAzRSIKjGlEuIC";
+const P256DH_KEY = "BM+a66uZAiATbHWruM7ea8PGTNHxQJTRlT0wrmxxCt7hWvrUna8j+o/rHt9C3EUvAB8njNt7ANvPEW2ylvHrRJs=";
+const AUTH_KEY = "X7XVdzAIEqJ6Evb4Rw1w2Q==";
+const GCM_API_KEY = "AAAALwvFDAA:APA91bEAB8n1nsXHTZEUZXSM97qyIZ1XBcaXQbt7FlGHA3jNORgNSiisL49COI4CQ-Z5lraeXYeqBcGwG19jHeBAANKHKcmq_ihvI_u-PMPbWnYo47XUWcgpveGyYObZL1CM-zEeqs7t";
+
+var pushSubscription = {
+    "endpoint": ENDPOINT,
+    "keys": {
+        "p256dh": P256DH_KEY, 
+        "auth": AUTH_KEY
+    }
+};
+var payload = 'Notification from firebase';
+var options = {
+    gcmAPIKey: GCM_API_KEY,
+    TTL: 60
+};
+webPush.sendNotification(
+    pushSubscription,
+    payload,
+    options
+).then((result) => console.log("success", result))
+.catch((error) => console.log("error", error));

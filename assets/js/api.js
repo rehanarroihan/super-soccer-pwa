@@ -28,6 +28,9 @@ function getStandings() {
                     <tr>
                         <td>${standing.position}</td>
                         <td><a href="./club.html?id=${standing.team.id}">${standing.team.name}</a></td>
+                        <td>${standing.playedGames}</td>
+                        <td>${standing.won}</td>
+                        <td>${standing.lost}</td>
                         <td>${standing.points}</td>
                     </tr>
                 `;
@@ -51,7 +54,7 @@ function getStandings() {
             standingList += `
                 <tr>
                     <td>${standing.position}</td>
-                    <td>${standing.team.name}</td>
+                    <td><a href="./club.html?id=${standing.team.id}">${standing.team.name}</a></td>
                     <td>${standing.playedGames}</td>
                     <td>${standing.won}</td>
                     <td>${standing.lost}</td>
